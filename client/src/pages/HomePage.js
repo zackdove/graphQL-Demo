@@ -9,6 +9,7 @@ const HomePage = () => {
             <StyledPage>
                 <Title/>
                 <HomeButton link="/planets" label="milky way"/>
+                <HomeButton link="/milkyway" label="milky way"/>
                 <HomeButton link="/coruascant" label="coruascant"/>
                 <HomeButton link="/skaro" label="skaro"/>
                 <HomeButton link="/add" label="add new system"/>

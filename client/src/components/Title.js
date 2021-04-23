@@ -8,6 +8,7 @@ class Title extends Component {
         this.state = {
             titeText: "STERNE"
         }
+        this.interval = null;
     }
     componentDidMount(){
         this.setState({
@@ -20,7 +21,10 @@ class Title extends Component {
                 titleText : this.translations[x]
             })
         }
-        setInterval(toggleTitle, 1000);
+        this.interval = setInterval(toggleTitle, 1000);
+    }
+    componentWillUnmount(){
+        clearInterval(this.interval)
     }
     render(){
         return(

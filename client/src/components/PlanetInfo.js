@@ -1,18 +1,17 @@
 import React, {Component} from "react";
 import styled from 'styled-components'
 
-class PlanetPage extends Component{
+
+class PlanetInfo extends Component{
     constructor(props){
         super(props)
         this.state = {
             data: null,
-            name: null,
-            planets: [],
-        };
+        }
     }
     callGraphQL = async () => {
         var query = `query {
-            solarSystem(name: "${this.props.system}") {
+            solarSystem {
                 name
                 astralBodies {
                     name
@@ -21,7 +20,6 @@ class PlanetPage extends Component{
                 }
             }
         }`
-        console.log(query);
         fetch('/graphql', {
             method: 'POST',
             headers: {
@@ -45,33 +43,4 @@ class PlanetPage extends Component{
     componentDidMount() {
             this.callGraphQL()
     }
-    render(){
-        const planets = this.state.planets.map((val) => {
-            return(
-                <p key={val.name}>
-                    {val.name}
-                </p>
-            )
-        })
-        return (
-            <>
-                <StyledPage>
-                    {this.props.system}
-                    planet page here
-                    {planets}
-                </StyledPage>
-            </>
-        )
-    }
 }
-
-const StyledPage = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-`
-
-export default PlanetPage;
