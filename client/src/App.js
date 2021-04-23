@@ -14,11 +14,14 @@ import {
 import HomePage from "./pages/HomePage"
 import InfoPage from "./pages/InfoPage"
 import PlanetPage from "./pages/PlanetPage"
+import Nav from "./components/Nav"
 
 export const Routes = {
     HOME: "/",
     INFO: "/info",
-    PLANET: "/planets"
+    PLANET: "/planets",
+    MILKYWAY: "/milkyway",
+    CORUASCANT: "/coruascant"
 }
 
 export const Pages = () => {
@@ -26,6 +29,8 @@ export const Pages = () => {
         <>
             <Switch>
                 <Route path={Routes.PLANET} component={PlanetPage}/>
+                <Route path={Routes.MILKYWAY} render={(props)=><PlanetPage {...props} system="milkyway"/>}/>
+                <Route path={Routes.CORUASCANT} render={(props)=><PlanetPage {...props} system="coruascant"/>}/>
                 <Route path={Routes.INFO} component={InfoPage}/>
                 <Route path={Routes.HOME} component={HomePage}/>
             </Switch>
@@ -36,6 +41,7 @@ export const Pages = () => {
 const App = () => {
     return(
         <Router>
+            <Nav/>
             <Pages />
         </Router>
     );

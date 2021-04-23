@@ -16,7 +16,7 @@ app.get('/express_backend', (req, res) => {
 
 var schema = buildSchema(`
     type Query {
-        solarSystem: SolarSystem!
+        solarSystem(name: String!): SolarSystem!
     }
     type SolarSystem {
         name: String
@@ -58,11 +58,20 @@ class AstralBody {
 var earth = new AstralBody('Earth', 'blue', 3, 7, 'rocky')
 var saturn = new AstralBody('Saturn', 'yellow', 6, 12, 'gas')
 var milkyWay = new SolarSystem('Miky Way', [earth, saturn])
+
+
+var coruascant  = new AstralBody('Coruascant', 'blue', 3, 7, 'rocky')
+var coruascantSystem = new SolarSystem('Coruascant', [coruascant])
 console.log(milkyWay)
 
 var root = {
     solarSystem: (args) => {
-        return milkyWay
+        console.log(args)
+        if (args.name === "milkyway"){
+            return milkyWay;
+        } else {
+            return coruascantSystem;
+        }
     }
 };
 
