@@ -43,21 +43,30 @@ class SolarSystem {
     }
 }
 class AstralBody {
-    constructor(name, colour, radius, mass, composition){
+    constructor(name, colour, radius, mass, composition, distance, period){
         this.name = name;
         this.colour = colour;
         this.radius = radius;
         this.mass = mass;
         this.composition = composition;
+        this.distance = distance;
+        this.period = period;
     }
     getDensity(){
         return (this.mass / ((4*Math.PI*Math.pow(this.radius, 3))/3))
     }
 }
 
-var earth = new AstralBody('Earth', 'blue', 3, 7, 'rocky')
-var saturn = new AstralBody('Saturn', 'yellow', 6, 12, 'gas')
-var milkyWay = new SolarSystem('Miky Way', [earth, saturn])
+const mercury = new AstralBody('Mercury', 'grey', 0.4, 0.055, 'rocky', 0.4, 0.24);
+var earth = new AstralBody('Earth', 'blue', 1, 1, 'rocky', 1, 1);
+const venus = new AstralBody('Venus', 'white', 0.95, 0.815, 'rocky', 0.73, 0.615);
+const mars = new AstralBody('Mars', 'red', 0.533, 0.107, 'rocky', 1.52, 1.88);
+const jupiter = new AstralBody('Jupiter', 'orange', 11.2, 317.8, 'gas', 5.2, 11.86);
+
+var saturn = new AstralBody('Saturn', 'yellow', 9.449, 95.15, 'gas', 9.58, 29.45);
+const uranus = new AstralBody('Uranus', 'lightblue', 14.5, 4.007, 'ice', 19.2, 84);
+const neptune = new AstralBody('Neptune', 'blue', 3.88, 17.14, 'ice', 30.07, 164.8);
+var milkyWay = new SolarSystem('Miky Way', [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune])
 
 
 var coruascant  = new AstralBody('Coruascant', 'blue', 3, 7, 'rocky')

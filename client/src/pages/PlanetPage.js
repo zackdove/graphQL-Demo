@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styled from 'styled-components'
+import ThreeScene from '../components/ThreeScene'
 
 class PlanetPage extends Component{
     constructor(props){
@@ -7,6 +8,7 @@ class PlanetPage extends Component{
         this.state = {
             data: null,
             name: null,
+            loaded: false,
             planets: [],
         };
     }
@@ -18,6 +20,7 @@ class PlanetPage extends Component{
                     name
                     colour
                     composition
+                    radius
                 }
             }
         }`
@@ -38,12 +41,14 @@ class PlanetPage extends Component{
             this.setState({
                 data: data.data.solarSystem.name,
                 planets: data.data.solarSystem.astralBodies,
+                loaded: true,
             })
+            console.log(this.state.planets);
         })
         .catch(err => console.log(err));
     }
     componentDidMount() {
-            this.callGraphQL()
+        this.callGraphQL()
     }
     render(){
         const planets = this.state.planets.map((val) => {
@@ -56,9 +61,11 @@ class PlanetPage extends Component{
         return (
             <>
                 <StyledPage>
-                    {this.props.system}
+                    <StyledHeader>{this.props.system}</StyledHeader>
+
                     planet page here
                     {planets}
+                    {this.state.loaded ?  <ThreeScene planets={this.state.planets}/> : null}
                 </StyledPage>
             </>
         )
@@ -72,6 +79,15 @@ const StyledPage = styled.div`
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+`
+
+const StyledHeader = styled.div`
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    width: 100vw;
+    text-align: center;
+    font-size: 2rem;
 `
 
 export default PlanetPage;

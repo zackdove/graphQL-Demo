@@ -4,9 +4,10 @@ import styled from 'styled-components'
 const InfoPage = () => {
     return (
             <StyledPage>
-                milkyWay
-                alpha caentauri
-                info
+                <h1>Info</h1>
+                <h4>Welcome to Sterne</h4>
+                <h4>An informational web app, designed to provide a visualisation of solar systems</h4>
+                <h4>Built with React, GraphQL, Express</h4>
             </StyledPage>
     );
 }
